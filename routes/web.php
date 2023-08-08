@@ -24,7 +24,8 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::resource("posts", PostController::class);
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -32,8 +33,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource('chirps', ChirpController::class)
-    ->only(['index', 'store', 'edit', 'update', 'destroy'])
-    ->middleware(['auth', 'verified']);
+Route::resource("posts", PostController::class) 
+->only(['index', 'store', 'create', 'edit', 'show', 'update', 'destroy'])
+->middleware(['auth', 'verified']);
 
+Route::resource('chirps', ChirpController::class) 
+->only(['index', 'store', 'edit', 'update', 'destroy'])
+->middleware(['auth', 'verified']);
+
+   
 require __DIR__.'/auth.php';
