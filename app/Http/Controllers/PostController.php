@@ -83,7 +83,7 @@ class PostController extends Controller
         ]);
         
         $post->update($validated);
-        return redirect(route('posts.index'));
+        return redirect(route('dashboard'));
     }
 
     /**
@@ -95,6 +95,6 @@ class PostController extends Controller
  
         $post->delete();
  
-        return redirect(route('posts.index')); 
+        return redirect(route('dashboard')); 
     }
 }

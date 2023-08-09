@@ -8,10 +8,11 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Blog') }}
         </h2>
-    </x-slot>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      </x-slot>
+      <x-pop-up/>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mt-4">
         @foreach ($posts as $post)
-        <div class="md:p-8 p-2 bg-white h">
+        <div class="md:p-8 p-2 bg-white ">
           <!--Banner image-->
           <img class="rounded-lg w-fit image_index" src="{{ asset('storage/'.$post->image) }}"
             
@@ -48,4 +49,5 @@
         <!-- component -->
     <x-footer/>
     <script src="" async defer></script>
+    <script src="pop-up.js"></script>
 </x-app-layout>
