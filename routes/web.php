@@ -17,6 +17,7 @@ use App\Http\Controllers\PostController;
 */
 
 Route::get('/', [PostController::class, 'index'])->name('posts.index');
+Route::get('/posts/{post}/show', [PostController::class, 'show'])->name('posts.show');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -34,7 +35,7 @@ Route::middleware('auth')->group(function () {
 
 
 Route::resource("posts", PostController::class) 
-->only(['store', 'create', 'edit', 'show', 'update', 'destroy'])
+->only(['store', 'create', 'edit', 'update', 'destroy'])
 ->middleware(['auth', 'verified']);
 
 Route::resource('chirps', ChirpController::class) 
