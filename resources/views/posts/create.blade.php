@@ -10,7 +10,7 @@
         </h2>
     </x-slot>
 
-
+    <div class="flex justify-center">
     <div class="p-4 md:w-1/3 flex justify-center">
 
         <div class="my-5">
@@ -36,4 +36,6 @@
         </form>
 
     </div>
+</div>
+<x-footer />
 </x-app-layout>
