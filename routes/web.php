@@ -16,13 +16,12 @@ use App\Http\Controllers\PostController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [PostController::class, 'index'])->name('posts.index');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
 
 
 
@@ -33,8 +32,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
 Route::resource("posts", PostController::class) 
-->only(['index', 'store', 'create', 'edit', 'show', 'update', 'destroy'])
+->only(['store', 'create', 'edit', 'show', 'update', 'destroy'])
 ->middleware(['auth', 'verified']);
 
 Route::resource('chirps', ChirpController::class) 

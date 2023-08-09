@@ -81,12 +81,10 @@
       href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
       rel="stylesheet"
     />
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-        <div class="md:p-8 p-2 bg-white">
+    <div class="flex justify-center  ">
+        <div class="md:p-8 p-2 bg-white w-1/3 mt-4">
           <!--Banner image-->
-          <img
-            class="rounded-lg w-full"
-            src="{{ asset('storage/'.$post->image) }}"
+          <img class="rounded-lg w-full" src="{{ asset('storage/'.$post->image) }}"
             
           />
 
@@ -111,26 +109,26 @@
                 {{ Str::limit($post->content)}}
             </p>
           </div>
-        <p><a href="{{ route('posts.index') }}" title="Retourner aux articles" >Retourner aux posts</a></p>
+        <p class="text-end"><a href="{{ route('posts.index') }}" title="Retourner aux articles" ><< Retourner aux articles</a></p>
     </div>
     </div>  
-    <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
+    <div class="max-w-screen mx-auto p-4 sm:p-6 lg:p-8">
         <form method="POST" action="{{ route('chirps.store', ['post' => $post->id]) }}">
             @csrf
             <textarea
-                name="message"
-                placeholder="{{ __('Veuillez écrire votre commantaire.') }}"
-                class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+            name="message"
+            placeholder="{{ __('Veuillez écrire votre commantaire.') }}"
+            class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
             >{{ old('message') }}</textarea>
             <x-input-error :messages="$errors->get('message')" class="mt-2" />
-            <x-primary-button class="mt-4">{{ __('envoyer') }}</x-primary-button>
-        </form>
-        @foreach($post->chirps as $chirp)
-        <div>
-          <p>{{$chirp->user->name}}</p>
-          <p>{{$chirp->message}}</p>
-        </div>
-        @endforeach
+                <x-primary-button class="mt-4">{{ __('envoyer') }}</x-primary-button>
+            </form>
+            @foreach($post->chirps as $chirp)
+            <div>
+              <h5>{{$chirp->user->name}}</h5>
+              <p>{{$chirp->message}}</p>
+            </div>
+            @endforeach
     </div>
 
         <!-- component -->
